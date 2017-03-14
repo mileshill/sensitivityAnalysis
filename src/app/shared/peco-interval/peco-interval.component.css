@@ -1,0 +1,47 @@
+md-card {
+    height: 95%;
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+md-card-content {
+    align-content: center;
+    
+}
+
+md-slider {
+    width: 100%;
+}
+
+
+table {
+    width: 100%;
+}
+
+th {
+    border-bottom: 1px solid #CFD8DC;
+    align-content: center;
+}
+
+tr:hover {
+    background-color: #fff59d;
+}
+
+.control-container {
+    background-color: #e0e0e0;
+}
+
+.d3-chart {
+  width: 90%;
+  height: 400px;
+}
+
+.d3-chart .axis path,
+.d3-chart .axis line {
+  stroke: #999;
+}
+
+.d3-chart .axis text {
+  fill: #999;
+}

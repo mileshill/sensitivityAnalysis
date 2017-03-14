@@ -1,0 +1,54 @@
+// {
+//     "peco":{
+//         "interval":{
+//             "premise":{
+//                 "usage":{
+//                     "count": 5.0,
+//                     "min": 0.0,
+//                     "max": 10.0
+//                 }
+//             },
+//             "utility":{},
+//             "system":{}
+//         },
+//         "consumption":{},
+//         "demand":{}
+//     },
+//     "ppl":{
+//         "interval":{},
+//         "consumption":{},
+//         "demand":{}
+//     },
+//     "pseg":{
+//         "interval":{},
+//         "consumption":{},
+//         "demand":{}
+//     },
+//     "centhud":{
+//         "interval":{},
+//         "consumption":{},
+//         "demand":{}
+//     },
+//     "coned":{
+//         "interval":{},
+//         "consumption":{},
+//         "demand":{}
+//     },
+//     "comed":{
+//         "interval":{},
+//         "consumption":{},
+//         "demand":{}
+//     }
+// };
+
+{
+   "items":[
+        {
+        "premise": "peco",
+        "factors":[
+            {"usage": 5, "min":1, "max": 100},
+            {"rclf": 1, "min":0.75, "max": 2.0}
+        ]
+    }
+   ]
+}

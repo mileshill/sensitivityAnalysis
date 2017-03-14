@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<!-- Acts only as container for applicaton-->
+<div class="container">
+  <!-- Recipe Selection Form; [utilityName: string, meterType: string]-->
+<md-card>
+  <md-card-title>Recipe Selection</md-card-title>
+  <md-card-content>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit(recipeForm)">
+      <md-select placeholder="Utility" formControlName="utilityName">
+        <md-option *ngFor="let util of utilities" [value]="util">{{util}}</md-option>
+      </md-select>
+
+      <md-select placeholder="Metertype" formControlName="meterType">
+        <md-option *ngFor="let meter of meterTypes" [value]="meter">{{meter}}</md-option>
+      </md-select>
+
+      <!--<button md-raised-button color="primary" type="submit">Submit</button>-->
+    </form>
+  </md-card-content>
+</md-card>
+<hr>
+
+<!-- Swithc into view based on recipe selection-->
+<div *ngIf="recipeForm.valid" [ngSwitch]="recipeForm.value.utilityName + recipeForm.value.meterType">
+  <app-peco-interval *ngSwitchCase="'pecointerval'"></app-peco-interval>
+  <app-peco-consumption *ngSwitchCase="'pecoconsumption'"></app-peco-consumption>
+  <app-peco-demand *ngSwitchCase="'pecodemand'"></app-peco-demand>
+  <app-ppl-interval *ngSwitchCase="'pplinterval'"></app-ppl-interval> 
+</div>
+
+</div>

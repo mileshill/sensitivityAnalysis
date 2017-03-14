@@ -1,0 +1,117 @@
+<form [formGroup]="intervalForm" (ngSubmit)="onSubmit(intervalForm)">
+  <md-card class="control-container">
+    <md-card-title>Factor Manipulation</md-card-title>
+    <md-card-content>
+      <!-- Usage -->
+      <div class="row">
+        <div class="col-md-4">
+          <md-card>
+            <md-card-title>Usage</md-card-title>
+            <md-card-content>
+              <div class="col-md-12">
+                <md-slider min="1" max="100" step="1" formControlName="usage1" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              <div class="col-md-12">
+                <md-slider min="1" max="100" step="1" formControlName="usage2" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              <div class="col-md-12">
+                <md-slider min="1" max="100" step="1" formControlName="usage3" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              <div class="col-md-12">
+                <md-slider min="1" max="100" step="1" formControlName="usage4" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              <div class="col-md-12">
+                <md-slider min="1" max="100" step="1" formControlName="usage5" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+            </md-card-content>
+          </md-card>
+        </div>
+        <!-- Reconcilation-->
+        <div class="col-md-4">
+          <md-card>
+            <md-card-title>Reconcilation</md-card-title>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="wcf1" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="wcf2" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="wcf3" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="wcf4" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="wcf5" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+          </md-card>
+        </div>
+        <!-- RCLF-->
+        <div class="col-md-4">
+          <md-card>
+            <md-card-title>Rate Class Loss</md-card-title>
+            <div class="col-md-12">
+              <md-slider min=".5" max="1.5" step=".01" formControlName="rclf" tickInterval="auto" thumbLabel></md-slider>
+            </div>
+          </md-card>
+        </div>
+      </div>
+      <!-- Dispaly dynamic ICap -->
+      <div class="row">
+        <div></div>
+      </div>
+      <!-- Show ICap Calulation -->
+      <div class="row">
+        <div class="col-md-12">
+          <md-card>
+            <md-card-title>Current Factors</md-card-title>
+            <md-card-content>
+              <table class="responsive-table">
+                <tr>
+                  <th>Usage</th>
+                  <th>Reconcilation</th>
+                  <th>Rate Class Loss</th>
+                </tr>
+                <tr>
+                  <td>{{intervalForm.value.usage1}}</td>{{intervalForm.value.wcf1}}
+                  <td>{{intervalForm.value.rclf}}</td>
+                </tr>
+                <tr>
+                  <td>{{intervalForm.value.usage2}}</td>{{intervalForm.value.wcf2}}
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>{{intervalForm.value.usage3}}</td>{{intervalForm.value.wcf3}}
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>{{intervalForm.value.usage4}}</td>{{intervalForm.value.wcf4}}
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>{{intervalForm.value.usage5}}</td>{{intervalForm.value.wcf5}}
+                  <td></td>
+                </tr>
+              </table>
+            </md-card-content>
+          </md-card>
+        </div>
+      </div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-mini-fab type="submit">+</button>
+    </md-card-actions>
+  </md-card>
+</form>
+
+<div class="row" *ngIf="icap.length > 0">
+  <div class="col-md-12">
+    <md-card>
+      <md-card-title>ICap Values</md-card-title>
+      <md-card-content>
+        <app-barchart [data]="icap"></app-barchart>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
