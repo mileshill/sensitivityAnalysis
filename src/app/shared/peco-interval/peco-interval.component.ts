@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-peco-interval',
@@ -17,6 +17,8 @@ export class PecoIntervalComponent implements OnInit {
 
   ngOnInit() {
     this.intervalForm = this._fb.group({
+      usageMin: 0,
+      usageMax: 1,
       usage1: 0,
       usage2: 0,
       usage3: 0,
@@ -27,7 +29,8 @@ export class PecoIntervalComponent implements OnInit {
       wcf3: 0,
       wcf4: 0,
       wcf5: 0,
-      rclf: 0
+      rclf: 0,
+      scenario: ""
     });
 
   }
@@ -64,7 +67,7 @@ export class PecoIntervalComponent implements OnInit {
     }
 
     tmpIcapArray.push([
-      `Index ${this.count++}`,
+      `${this.count++ +': '+ this.intervalForm.value.scenario}`,
       _icap
     ]);
 

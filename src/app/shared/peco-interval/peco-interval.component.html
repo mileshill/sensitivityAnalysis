@@ -2,34 +2,52 @@
   <md-card class="control-container">
     <md-card-title>Factor Manipulation</md-card-title>
     <md-card-content>
-      <!-- Usage -->
+      
+      <!-- Begin Control Cards-->
       <div class="row">
+        <!-- Usage Card-->
         <div class="col-md-4">
           <md-card>
             <md-card-title>Usage</md-card-title>
             <md-card-content>
+
+              <div class="col-md-6 range-slider">
+                <label>Min</label>
+                <md-slider min="0" max="99999" step="100" formControlName="usageMin" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              
+              <div class="col-md-6 range-slider">
+                <label>Max</label>
+                <md-slider min="1" max="100000" step="100" formControlName="usageMax" tickInterval="auto" thumbLabel></md-slider>
+              </div>
+              
+              <hr>
+          
               <div class="col-md-12">
-                <md-slider min="1" max="100" step="1" formControlName="usage1" tickInterval="auto" thumbLabel></md-slider>
+                <md-slider min="{{intervalForm.value.usageMin}}" max="{{intervalForm.value.usageMax}}" step="1" formControlName="usage1" tickInterval="auto" thumbLabel></md-slider>
               </div>
               <div class="col-md-12">
-                <md-slider min="1" max="100" step="1" formControlName="usage2" tickInterval="auto" thumbLabel></md-slider>
+                <md-slider min="{{intervalForm.value.usageMin}}" max="{{intervalForm.value.usageMax}}" step="1" formControlName="usage2" tickInterval="auto" thumbLabel></md-slider>
               </div>
               <div class="col-md-12">
-                <md-slider min="1" max="100" step="1" formControlName="usage3" tickInterval="auto" thumbLabel></md-slider>
+                <md-slider min="{{intervalForm.value.usageMin}}" max="{{intervalForm.value.usageMax}}" step="1" formControlName="usage3" tickInterval="auto" thumbLabel></md-slider>
               </div>
               <div class="col-md-12">
-                <md-slider min="1" max="100" step="1" formControlName="usage4" tickInterval="auto" thumbLabel></md-slider>
+                <md-slider min="{{intervalForm.value.usageMin}}" max="{{intervalForm.value.usageMax}}" step="1" formControlName="usage4" tickInterval="auto" thumbLabel></md-slider>
               </div>
               <div class="col-md-12">
-                <md-slider min="1" max="100" step="1" formControlName="usage5" tickInterval="auto" thumbLabel></md-slider>
+                <md-slider min="{{intervalForm.value.usageMin}}" max="{{intervalForm.value.usageMax}}" step="1" formControlName="usage5" tickInterval="auto" thumbLabel></md-slider>
               </div>
+            
             </md-card-content>
           </md-card>
         </div>
-        <!-- Reconcilation-->
+
+        <!-- Weather Correction Factor-->
         <div class="col-md-4">
           <md-card>
-            <md-card-title>Reconcilation</md-card-title>
+            <md-card-title>Weather Correction</md-card-title>
+            <md-card-content>
             <div class="col-md-12">
               <md-slider min=".5" max="1.5" step=".01" formControlName="wcf1" tickInterval="auto" thumbLabel></md-slider>
             </div>
@@ -45,21 +63,40 @@
             <div class="col-md-12">
               <md-slider min=".5" max="1.5" step=".01" formControlName="wcf5" tickInterval="auto" thumbLabel></md-slider>
             </div>
+            </md-card-content>
           </md-card>
         </div>
-        <!-- RCLF-->
+        
+        <!-- RCLF and Scenario-->
         <div class="col-md-4">
-          <md-card>
-            <md-card-title>Rate Class Loss</md-card-title>
+          <div class="row">
+
             <div class="col-md-12">
-              <md-slider min=".5" max="1.5" step=".01" formControlName="rclf" tickInterval="auto" thumbLabel></md-slider>
+              <md-card>
+                <md-card-title>Rate Class Loss</md-card-title>
+                <md-card-content>
+                <div class="col-md-12">
+                  <md-slider min=".5" max="1.5" step=".01" formControlName="rclf" tickInterval="auto" thumbLabel></md-slider>
+                </div>
+                </md-card-content>
+              </md-card>
             </div>
-          </md-card>
+            
+            <div class="col-md-12">
+              <md-card>
+                <md-card-title>Scenario</md-card-title>
+                <md-card-content>
+                <div class="col-md-12">
+                  <md-input-container>
+                    <input mdInput placeholder="Scenario" formControlName="scenario">
+                  </md-input-container>
+                </div>
+                </md-card-content>
+              </md-card>
+            </div>
+          
+          </div>
         </div>
-      </div>
-      <!-- Dispaly dynamic ICap -->
-      <div class="row">
-        <div></div>
       </div>
       <!-- Show ICap Calulation -->
       <div class="row">
@@ -74,37 +111,42 @@
                   <th>Rate Class Loss</th>
                 </tr>
                 <tr>
-                  <td>{{intervalForm.value.usage1}}</td>{{intervalForm.value.wcf1}}
-                  <td>{{intervalForm.value.rclf}}</td>
+                  <td>{{intervalForm.value.usage1}}</td>{{intervalForm.value.wcf1 | number: '1.3-3'}}
+                  <td>{{intervalForm.value.rclf | number: '1.3-3'}}</td>
                 </tr>
                 <tr>
-                  <td>{{intervalForm.value.usage2}}</td>{{intervalForm.value.wcf2}}
+                  <td>{{intervalForm.value.usage2}}</td>{{intervalForm.value.wcf2 | number: '1.3-3'}}
                   <td></td>
                 </tr>
                 <tr>
-                  <td>{{intervalForm.value.usage3}}</td>{{intervalForm.value.wcf3}}
+                  <td>{{intervalForm.value.usage3}}</td>{{intervalForm.value.wcf3 | number: '1.3-3'}}
                   <td></td>
                 </tr>
                 <tr>
-                  <td>{{intervalForm.value.usage4}}</td>{{intervalForm.value.wcf4}}
+                  <td>{{intervalForm.value.usage4}}</td>{{intervalForm.value.wcf4 | number: '1.3-3'}}
                   <td></td>
                 </tr>
                 <tr>
-                  <td>{{intervalForm.value.usage5}}</td>{{intervalForm.value.wcf5}}
+                  <td>{{intervalForm.value.usage5}}</td>{{intervalForm.value.wcf5 | number: '1.3-3'}}
                   <td></td>
                 </tr>
               </table>
             </md-card-content>
+            
           </md-card>
         </div>
       </div>
-    </md-card-content>
-    <md-card-actions>
+    
+      
+      <!--</div>-->
+  </md-card-content>
+  <md-card-actions>
       <button md-mini-fab type="submit">+</button>
     </md-card-actions>
   </md-card>
 </form>
 
+<!-- Barchart -->
 <div class="row" *ngIf="icap.length > 0">
   <div class="col-md-12">
     <md-card>

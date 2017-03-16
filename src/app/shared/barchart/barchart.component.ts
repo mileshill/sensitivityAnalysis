@@ -10,7 +10,7 @@ import * as d3 from 'd3';
 export class BarchartComponent implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
   @Input() private data: Array<any>;
-  private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
+  private margin: any = { top: 10, bottom: 10, left: 40, right: 10};
   private chart: any;
   private width: number;
   private height: number;
@@ -36,19 +36,21 @@ export class BarchartComponent implements OnInit, OnChanges {
   }
 
   createChart() {
-    console.log('create chart fired!');
+    
     let element = this.chartContainer.nativeElement;
 
     let svg = d3.select(element).append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
+
+    
   
   
-    console.log(element);
+    
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
-    console.log('createChart:offsetWidth-1', element.offsetWidth);
-    console.log('createChart:offsetHeight-1', element.offsetHeight);
+    
+    
     
   
 
@@ -62,9 +64,9 @@ export class BarchartComponent implements OnInit, OnChanges {
     let yDomain = [0, d3.max(this.data, d => d[1])];
 
     // create scales
-    console.log('createChart:offsetWidth-2', element.offsetWidth);
-    console.log('createChart:offsetHeight-2', element.offsetHeight);
-    console.log('updateChart: this.height', this.height);
+    
+    
+    
 
     this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
     this.yScale = d3.scaleLinear().domain(yDomain).range([this.height, 0]);
@@ -84,8 +86,8 @@ export class BarchartComponent implements OnInit, OnChanges {
   }
 
   updateChart() {
-    console.log('update chart fired!');
-    console.log(this.data);
+    
+    
     // update scales & axis
     this.xScale.domain(this.data.map(d => d[0]));
     this.yScale.domain([0, d3.max(this.data, d => d[1])]);
@@ -93,14 +95,14 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));
 
-    console.log('updated scales, colors, and axes');
+    
     let update = this.chart.selectAll('.bar')
       .data(this.data);
 
     // remove exiting bars
     update.exit().remove();
 
-    console.log('completed update.exit().remove()');
+    
 
     // update existing bars
     this.chart.selectAll('.bar').transition()
@@ -110,7 +112,19 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('height', d => this.height - this.yScale(d[1]))
       .style('fill', (d, i) => this.colors(i));
 
-    console.log('selected new bars');
+    
+    // let div = d3.select("body")
+    //   .append('div')
+    //   .attr('class', 'tooltip')
+    //   .style('opacity', 0);
+
+
+    // let tooltip = d3.select('body')
+    //   .append('div')
+    //   .attr('class', 'tooltip');
+
+    
+
     // add new bars
     update
       .enter()
@@ -125,6 +139,32 @@ export class BarchartComponent implements OnInit, OnChanges {
       .delay((d, i) => i * 10)
       .attr('y', d => this.yScale(d[1]))
       .attr('height', d => this.height - this.yScale(d[1]));
-    console.log('end update function');
+
+    // update
+    //   .on('mousein', d => {
+    //       tooltip
+    //         .style('left', d3.event.pageX +  'px')
+    //         .style('top', d3.event.pageY + 'px')
+    //         .style('display', 'inline-block')
+    //         .html('Name: ' + d[0]);
+    //       })
+    //     .on('mouseout', () => {
+    //       tooltip.style('display', 'none');
+    //     });
+      
+    
   }
 }
+
+/*
+.on('mousemove', d => {
+        tooltip
+          .style('left', d3.event.pageX +  'px')
+          .style('top', d3.event.pageY + 'px')
+          .style('display', 'inline-block')
+          .html('Name: ' + d[0]);
+        })
+      .on('mouseout', () => {
+        tooltip.style('display', 'inline-block');
+      });
+      */
