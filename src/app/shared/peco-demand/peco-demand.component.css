@@ -1,0 +1,31 @@
+md-card {
+    height: 95%;
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+md-card-content {
+    align-content: center;
+    height: 100%;
+    width: 100%;
+    
+}
+
+md-slider {
+    width: 100%;
+}
+
+
+table {
+    width: 100%;
+}
+
+th {
+    border-bottom: 1px solid #CFD8DC;
+    align-content: center;
+}
+
+tr:hover {
+    background-color: #fff59d;
+}
